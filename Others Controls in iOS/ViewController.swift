@@ -105,10 +105,34 @@ class ViewController: UIViewController,UIPickerViewDelegate,UIPickerViewDataSour
     
     @IBAction func btnActionInciar(_ sender: UIButton) {
         
-        for i in 0...1000{
-            //si la tarea es mucho, se debe hacer en segundo
-            //plano
-            brProgresView.progress = (Float(i)/1000.0)
+        let hilo = DispatchQueue(label: "pe.ourlimm.tareaPasada")
+        
+        /*hilo.async {
+            for i in 0...1000000{
+                //print(i)
+                //si la tarea es mucho, se debe hacer en segundo
+                //plano
+                let progreso = (Float(i)/1000000.0)
+                print(progreso)
+                self.brProgresView.progress = progreso
+            }
+        }*/
+        
+        hilo.async {
+            for i in 0...100{
+
+                print("A \(i)")
+                
+            }
+        }
+        
+        let hilo2 = DispatchQueue(label: "pe.ourlimm.tareaPasada2")
+        
+        hilo2.async {
+            for i in 0...100{
+
+                print("B \(i)")
+            }
         }
         
         
